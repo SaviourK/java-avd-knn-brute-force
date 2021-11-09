@@ -15,7 +15,7 @@ public class ShiftTest {
         //vectors count
         int nodeCount = 1000000;
         //query count
-        int qSize = 100;
+        int qSize = 1000;
         //vector dimension
         int vecDim = 128;
         //number of nearest neighbors to find
@@ -83,6 +83,7 @@ public class ShiftTest {
         for (int val : diffs.values()) {
             System.out.println("K: " + l + " position: " + val);
             l++;
+            result.add(val);
         }
     }
 
