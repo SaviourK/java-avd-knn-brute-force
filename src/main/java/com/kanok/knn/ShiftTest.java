@@ -25,7 +25,6 @@ public class ShiftTest {
         /////////////////////////////////////////////////////// READ DATA
         FloatBuffer mass = createFloatBuffer("c:/All/VSB/2rocnik/AVD/sift1M/sift1M.bin");
         FloatBuffer massQ = createFloatBuffer("c:/All/VSB/2rocnik/AVD/sift1M/siftQ1M.bin");
-        //IntBuffer massQA = createIntBuffer("c:/All/VSB/2rocnik/AVD/sift1M/knnQA1M.bin");
         /////////////////////////////////////////////////////// QUERY PART
 
         System.out.println("Start querying");
@@ -36,7 +35,7 @@ public class ShiftTest {
             long start = System.currentTimeMillis();
 
             for (int i = 0; i < qSize; i++) {
-                float[] massQArray = new float[129];
+                float[] massQArray = new float[vecDim];
                 massQ.position(i * vecDim);
                 massQ.get(massQArray, 0, vecDim);
                 bruteForce(mass, massQArray, result, vecDim, k, nodeCount);
@@ -98,18 +97,4 @@ public class ShiftTest {
         }
         return mass;
     }
-
-    /*private IntBuffer createIntBuffer(String filePath) {
-        IntBuffer intBuffer = null;
-        try (FileInputStream stream = new FileInputStream(filePath)) {
-            FileChannel inChannel = stream.getChannel();
-
-            ByteBuffer buffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
-
-            intBuffer = buffer.asIntBuffer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return intBuffer;
-    }*/
 }
